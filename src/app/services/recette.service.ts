@@ -93,4 +93,16 @@ export class RecetteService {
       this.recettes[index] = recette;
     }
   }
+    ajouterpaysOrigine(p: paysOrigine): void {
+    const maxId = Math.max(0, ...this.paysOrigine.map(x => x.idpaysOrigine));
+    this.paysOrigine.push({ idpaysOrigine: maxId + 1, nompaysOrigine: p.nompaysOrigine });
+  }
+
+  updatepaysOrigine(p: paysOrigine): void {
+    const existant = this.paysOrigine.find(x => x.idpaysOrigine === p.idpaysOrigine);
+    if (existant) {
+      existant.nompaysOrigine = p.nompaysOrigine;
+    }
+  }
+  
 }

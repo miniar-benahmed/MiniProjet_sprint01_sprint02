@@ -23,9 +23,12 @@
 
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+
+                        @if (authService.isAdmin()) {
                         <li>
                             <a class="dropdown-item" routerLink="/add-recette">Ajouter</a>
                         </li>
+                        }
 
                         <li>
                             <a class="dropdown-item" routerLink="/recettes">Lister</a>
@@ -39,6 +42,9 @@
                             <a class="dropdown-item" routerLink="/rechercheParNom">Recherche par nom</a>
                         </li>
 
+                        <li>
+                            <a class="dropdown-item" routerLink="/listeCategories">Gestion des pays</a>
+                        </li>
                     </ul>
 
                 </li>
@@ -49,31 +55,35 @@
 
                 <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">[username]
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        [{{ authService.loggedUser }}]
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
 
-                        <li>
-                            <a class="dropdown-item" href="#">Login</a>
-                        </li>
 
+                        @if (!authService.isloggedIn) {
                         <li>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" routerLink="/login">Login</a>
                         </li>
+                        } @else {
+                        <li>
+                            <a class="dropdown-item" (click)="onLogout()">Logout</a>
+                        </li>
+                        }
 
                         <li>
                             <a class="dropdown-item" href="#">Profile</a>
                         </li>
 
-                    </ul>
-
-                </li>
+                    </ul>                </li>
 
             </ul>
 
         </div>
     </div>
 </nav>
+
 
 <router-outlet></router-outlet>

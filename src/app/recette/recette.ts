@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Recette } from '../models/recette.model';
 import { RecetteService } from '../services/recette.service';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-recette',
   standalone: true,
@@ -15,7 +15,7 @@ export class RecetteComponent implements OnInit {
 
   recettes?: Recette[];
 
-  constructor(private recetteService: RecetteService) {}
+  constructor(private recetteService: RecetteService,public authService: AuthService) {}
 
   ngOnInit(): void {
     this.recettes = this.recetteService.listeRecettes();

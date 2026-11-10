@@ -1,0 +1,15 @@
+<form>
+    <div [hidden]="ajout">
+        <label>ID Pays</label>
+        <input type="text" [(ngModel)]="categorie.idpaysOrigine" name="idPays" class="form-control w-25" disabled>
+    </div>
+    <div>
+        <label>Nom du pays</label>
+        <input type="text" [(ngModel)]="categorie.nompaysOrigine" name="nomPays" class="form-control" placeholder="Entrez un nom de pays...">
+    </div>
+    <div class="mt-2">
+        <button type="submit" [disabled]="!categorie.nompaysOrigine" class="btn btn-success" (click)="saveCategorie()">
+      {{ ajout ? 'Ajouter' : 'Modifier' }}
+    </button>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 mb-4">
+            <app-update-categorie [categorie]="updatedPays" [ajout]="ajout" (categorieUpdated)="paysUpdated($event)">
+            </app-update-categorie>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Pays d'origine</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (p of listePays; track p.idpaysOrigine) {
+                            <tr>
+                                <td>{{ p.idpaysOrigine }}</td>
+                                <td>{{ p.nompaysOrigine }}</td>
+                                <td><a class="btn btn-success" (click)="updatePays(p)">Editer</a></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

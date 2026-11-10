@@ -15,7 +15,10 @@
                             <th>Difficulté</th>
                             <th>Pays d'origine</th>
                             <th>Date d'ajout</th>
+                            <!-- CHANGEMENT 1 : colonne Actions visible seulement pour l'admin -->
+                            @if (authService.isAdmin()) {
                             <th>Actions</th>
+                            }
                         </tr>
                     </thead>
 
@@ -37,14 +40,19 @@
                             </td>
                             <td>{{ recette.paysOrigine?.nompaysOrigine }}</td>
                             <td>{{ recette.dateAjout | date:'dd/MM/yyyy' }}</td>
+
+                            <!-- CHANGEMENT 2 : boutons visibles seulement pour l'admin -->
+                            @if (authService.isAdmin()) {
                             <td class="text-nowrap">
                                 <button class="btn btn-danger btn-sm me-1" (click)="supprimerRecette(recette)"> Supprimer </button>
                                 <a class="btn btn-success btn-sm" [routerLink]="['/update-recette', recette.idRecette]"> Modifier </a>
                             </td>
+                            }
                         </tr>
                         } @empty {
                         <tr>
-                            <td colspan="8" class="text-center text-muted py-4">
+                            <!-- CHANGEMENT 3 : 8 colonnes pour l'admin, 7 sinon -->
+                            <td [attr.colspan]="authService.isAdmin() ? 8 : 7" class="text-center text-muted py-4">
                                 Aucune recette trouvée !
                             </td>
                         </tr>
